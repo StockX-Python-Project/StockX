@@ -3,58 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{stockName}}</title>
+    <title>{{companyName}}</title>
+    <link rel="icon" href="/static/assets/favicon.jpg" type="image/jpg">
     <link rel="stylesheet" href="../static/stock.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-
-    <script type="text/javascript">
-      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-      var intervalID = setInterval(update_values,5000);
-
-        function update_values() {
-              $.getJSON($SCRIPT_ROOT + '/Crypto_Price',
-
-            function(data) {
-              $('#result').text(data.result);
-              console.log(data.result);
-            });
-
-          };
-
-          function stopTextColor() {
-            clearInterval(intervalID);
-          }
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
   </head>
-  <body onload="update_values();">
+  <body>
     <div class="grid-container">
-
       <div class="grid-child">
-
-        <h1 id="stock-name">{{stockName}}</h1>
-        <h2 id="result">Loading...</h2>
-        <script>
-          document.getElementById("result").innerHTML;
-        </script>
+        <h1 id="stock-name">{{companyName}}</h1>
+        <h2 id="stock-price">{{price}}</h2>
 
         <div class="btn-box">
-          <div class="btn">
-            <button class="toggle-btn" id="current">Today</button>
-            <button class="toggle-btn" id="mdays">5 Days</button>
-            <button class="toggle-btn" id="month">1 Month</button>
-            <button class="toggle-btn" id="year">1 Year</button>
-            <button class="toggle-btn" id="max">Maximum</button>
-          </div>
+          <select id="interval-select">
+            <option value="1d">1 Day</option>
+            <option value="1w">1 Week</option>
+            <option value="1m">1 Month</option>
+            <option value="1y">1 Year</option>
+            <option value="max">Max</option>
+          </select>
         </div>
-        <div id="stock-graph">graph</div>
+        <div id="stockChart" style="height: 400px"></div>
       </div>
 
       <div id="grid-child">
         <div id="suggestions">
           <div id="suggestion-box">
             <h2>StockX Suggests...</h2>
-            <h2>Buy</h2>
+            <h2>{{stockName}}</h2>
             <h3>Source Articles 👇</h3>
           </div>
         </div>
@@ -62,10 +40,56 @@
     </div>
 
     <footer>
-        <div class="footer">
-          <p>Developed by Team StockX</p>
-        </div>
+      <div class="footer">
+        <p>Developed by Team StockX</p>
+      </div>
     </footer>
+
+    <script>
+      var chart;
+      var intervalSelect = $("#interval-select");
+
+      function fetchStockData(interval) {
+        $.ajax({
+          url: "/get_chart_data/{{stockName}}",
+          method: "POST",
+          data: { interval: interval },
+          success: function (data) {
+            var options = {
+              chart: {
+                type: "line",
+              },
+              title: {
+                text: "Chart",
+              },
+              xAxis: {
+                type: "datetime",
+              },
+              yAxis: {
+                title: {
+                  text: "Price",
+                },
+              },
+              series: [
+                {
+                  name: "Price",
+                  data: data,
+                },
+              ],
+            };
+            chart = Highcharts.chart("stockChart", options);
+          },
+        });
+      }
+
+      intervalSelect.on("change", function () {
+        var selectedInterval = $(this).val();
+        fetchStockData(selectedInterval);
+      });
+
+      // Initial load
+      fetchStockData(intervalSelect.val());
+    </script>
 
     <script src="../static/stock.js"></script>
   </body>

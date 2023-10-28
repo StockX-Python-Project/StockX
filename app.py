@@ -4,31 +4,49 @@ import plotly.graph_objects as go
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
+import json
 
 app = Flask(__name__)
 
 
 def get_price(stock):
-    with open("static/assets/ind_nifty50list.csv", "r", newline="") as fr:
-        reader = csv.DictReader(fr)
-        for data in reader:
-            if (
-                data["Company Name"]
-                .lower()
-                .replace(" ", "")
-                .find(stock.lower().replace(" ", ""))
-                != -1
-            ):
-                ticker = data["Symbol"] + ".NS"
+    ticker = stock + ".NS"
     stock_object = yf.Ticker(ticker)
     data = stock_object.history(period="1d")
     closing_price = data["Close"].iloc[0]
     return str(closing_price)
 
 
+@app.route('/get_chart_data/<ticker>', methods=['POST'])
+def get_stock_data(ticker):
+    ticker_symbol = ticker+'.NS'
+    interval = request.form.get('interval')
+    stock = yf.Ticker(ticker_symbol)
+
+    # Fetch historical data for the given ticker
+    if interval == '1d':
+        stock_data = stock.history(period='1d', interval='30m')
+    elif interval == '1w':
+        stock_data = stock.history(period='7d', interval='1h')
+    elif interval == '1m':
+        stock_data = stock.history(period='1mo', interval='1d')
+    elif interval == '1y':
+        stock_data = stock.history(period='1y', interval='1d')
+    elif interval == 'max':
+        stock_data = stock.history(period='max')
+
+    data = []
+    for idx, row in stock_data.iterrows():
+        close_price = round(row['Close'], 2)
+        data.append([int(row.name.timestamp()) * 1000, close_price])
+
+    return jsonify(data)
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    with open('static/assets/data.json', 'r') as json_file:
+        companyData = json.load(json_file)
+    return render_template('index.html', data=companyData)
 
 
 @app.route("/login")
@@ -41,43 +59,38 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/Stock_Price/<stock>", methods=["GET"])
-def stuff():
-    price = get_price(stock)
-    return jsonify(result=price)
+@app.route('/chart')
+def index():
+    return render_template('chart.html')
+
+
+# @app.route("/Stock_Price/<stock>", methods=["GET"])
+# def stuff(stock):
+#     print(stock)
+#     price = get_price(stock)
+#     return jsonify(result=price)
 
 
 @app.route("/<stock>")
 def stock(stock):
-    # with open("static/assets/ind_nifty50list.csv", "r", newline="") as fr:
-    #     reader = csv.DictReader(fr)
-    #     for data in reader:
-    #         if data["Company Name"].lower().replace(" ", "").find(stock.lower().replace(" ", "")) != -1:
-    #             ticker = data["Symbol"] + ".NS"
-
-    # stock_object = yf.Ticker(ticker)
-    # data = stock_object.history(period="1d")
-    # closing_price = data["Close"].iloc[0]
-
-    # today = stock_object.history(period="1d")
-    # week = stock_object.history(period="5d")
-    # month = stock_object.history(period="1m")
-    # year = stock_object.history(period="1y")
-    # maximum = stock_object.history(period="max")
-
-    # today_price = today["Close"]
-    # week_price = week["Close"]
-    # month_price = month["Close"]
-    # year_price = year["Close"]
-    # maximum_price = maximum["Close"]
-
-    # today_dates = today.index.date
-    # week_dates = week.index.date
-    # month_dates = month.index.date
-    # year_dates = year.index.date
-    # maximum_dates = maximum.index.date
-
-    return render_template("stock.html", stockName=stock)
+    stock_object = yf.Ticker(stock + ".NS")
+    data = stock_object.history(period="1d")
+    closing_price = round(data["Close"].iloc[0], 2)
+    
+    with open('static/assets/data.json', 'r') as json_file:
+        data = json.load(json_file)
+    
+    ticker_list = data.get("ticker", [])
+    company_list = data.get("company", [])
+    company = ""
+    
+    if stock in ticker_list:
+        index = ticker_list.index(stock)
+        if index < len(company_list):
+            company =  company_list[index]
+        else:
+            company = stock
+    return render_template("stock.html", stockName=stock, companyName=company, price=closing_price)
 
 
 @app.route("/<stock>/closing_price")
