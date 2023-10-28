@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{stockName}}</title>
     <link rel="stylesheet" href="../static/stock.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -39,15 +40,15 @@
         </script>
 
         <div class="btn-box">
-          <div class="btn">
-            <button class="toggle-btn" id="current">Today</button>
-            <button class="toggle-btn" id="mdays">5 Days</button>
-            <button class="toggle-btn" id="month">1 Month</button>
-            <button class="toggle-btn" id="year">1 Year</button>
-            <button class="toggle-btn" id="max">Maximum</button>
-          </div>
+            <select id="interval-select">
+                <option value="1d">1 Day</option>
+                <option value="1w">7 Days</option>
+                <option value="1m">1 Month</option>
+                <option value="1y">1 Year</option>
+                <option value="max">Max</option>
+            </select>
         </div>
-        <div id="stock-graph">graph</div>
+        <div id="stockChart" style="height: 400px;"></div>
       </div>
 
       <div id="grid-child">
@@ -66,6 +67,8 @@
           <p>Developed by Team StockX</p>
         </div>
     </footer>
+
+    
 
     <script src="../static/stock.js"></script>
   </body>

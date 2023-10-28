@@ -26,6 +26,30 @@ def get_price(stock):
     return str(closing_price)
 
 
+@app.route('/get_chart_data', methods=['POST'])
+def get_stock_data():
+    ticker_symbol = 'RELIANCE.NS'
+    interval = request.form.get('interval')
+    stock = yf.Ticker(ticker_symbol)
+
+    # Fetch historical data for the given ticker
+    if interval == '1d':
+        stock_data = stock.history(period='1d', interval='30m')
+    elif interval == '1w':
+        stock_data = stock.history(period='7d', interval='1h')
+    elif interval == '1m':
+        stock_data = stock.history(period='1mo', interval='1d')
+    elif interval == '1y':
+        stock_data = stock.history(period='1y', interval='1d')
+    elif interval == 'max':
+        stock_data = stock.history(period='max')
+
+    data = []
+    for idx, row in stock_data.iterrows():
+        data.append([int(row.name.timestamp()) * 1000, row['Close']])
+
+    return jsonify(data)
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -39,6 +63,11 @@ def login():
 @app.route("/register")
 def register():
     return render_template("register.html")
+
+
+@app.route('/chart')
+def index():
+    return render_template('chart.html')
 
 
 @app.route("/Stock_Price/<stock>", methods=["GET"])
