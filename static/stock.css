@@ -1,0 +1,89 @@
+body {
+    background-color: black;
+    color: #95C11E;
+}
+
+#container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#suggestions {
+    border-radius: 5%;
+    background-color: aliceblue;
+    margin: 3rem;
+}
+
+#suggestion-box {
+    padding: 5%;
+}
+
+.btn-box {
+    width: max-content;
+    height: fit-content;
+    margin: 35px auto;
+    position: relative;
+    border-radius: 30px;
+    background: #a3db0b;
+}
+
+.toggle-btn {
+    padding: 12px 40px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    text-align: center;
+    width: 150px;
+    color: rgb(245, 236, 221);
+}
+
+#current {
+    /* left: 0;
+    position: absolute; */
+    background: #10b02b;
+    border-radius: 30px;
+    transition: 0.5s;
+    width: 160px;
+}
+
+button {
+    font-weight: bold;
+    font-size: large;
+}
+
+footer {
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+}
+
+
+.copyright-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background-color: inherit;
+    padding-top: 25px;
+}
+
+.copyright {
+    background-color: inherit;
+    font-size: large;
+    font-weight: bold;
+    padding-right: 40px;
+    padding-bottom: 60px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    grid-gap: 20px;
+}
+
+.grid-child {
+    margin: 1rem;;
+}

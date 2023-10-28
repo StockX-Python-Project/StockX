@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reliance Stock Price</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <h1>Reliance Industries Ltd.</h1>
+    <div>
+        <label>Interval:</label>
+        <select id="interval-select">
+            <option value="1d">1 Day</option>
+            <option value="1w">7 Days</option>
+            <option value="1m">1 Month</option>
+            <option value="1y">1 Year</option>
+            <option value="max">Max</option>
+        </select>
+    </div>
+    <div id="stockChart" style="height: 400px;"></div>
+
+    <script>
+        var chart;
+        var intervalSelect = $('#interval-select');
+
+        function fetchStockData(interval) {
+            $.ajax({
+                url: '/get_stock_data',
+                method: 'POST',
+                data: { interval: interval },
+                success: function (data) {
+                    var options = {
+                        chart: {
+                            type: 'line',
+                        },
+                        title: {
+                            text: 'Reliance Stock Price'
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Price'
+                            }
+                        },
+                        series: [{
+                            name: 'Reliance Price',
+                            data: data,
+                        }]
+                    };
+                    chart = Highcharts.chart('stockChart', options);
+                }
+            });
+        }
+
+        intervalSelect.on('change', function () {
+            var selectedInterval = $(this).val();
+            fetchStockData(selectedInterval);
+        });
+
+        // Initial load
+        fetchStockData(intervalSelect.val());
+    </script>
+</body>
+</html>

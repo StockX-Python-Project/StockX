@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StockX</title>
+    <link rel="icon" type="image/x-icon" href="/static/assets/logo.ico" />
+    <link rel="stylesheet" href="/static/index.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/static/index.js"></script>
+  </head>
+
+  <body>
+    <div id="nav">
+      <img src="/static/assets/logo.png" alt="" />
+      <h4>MARKET</h4>
+      <h4>TRADING INSIGHTS</h4>
+      <h4>MARKET PORTFOLIO</h4>
+      <h4><a href="{{ url_for('login') }}" target="_blank">LOGIN</a></h4>
+    </div>
+    <video autoplay loop muted plays-inline>
+      <source src="/static/assets/backgroundVideo.mp4" />
+    </video>
+
+    <div id="main">
+      <div id="page1">
+        <h1>WELCOME TO STOCKX</h1>
+        <h2>GPT-Predict: Your Future in Stock Market Insights!</h2>
+        <p>
+          Creating a cutting-edge website for accurate stock market predictions
+          using advanced GPT technology. Empower your investment decisions with
+          AI-driven insights. Welcome to the Future of Stock Analysis
+        </p>
+
+        <div class="upper">
+          <form action="" method="post">
+            <input type="text" placeholder="Search Stock" name="name" />
+          </form>
+        </div>
+      </div>
+      <div id="page2">
+        <div id="scroller">
+          <div id="scroller-in">
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='HDFCBANK') }}"
+                target="_blank"
+                class="scroll"
+                >HDFCBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='TCS') }}"
+                target="_blank"
+                class="scroll"
+                >TCS</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='SBI') }}"
+                target="_blank"
+                class="scroll"
+                >SBI</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='ICICIBANK') }}"
+                target="_blank"
+                class="scroll"
+                >ICICIBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='AXISBANK') }}"
+                target="_blank"
+                class="scroll"
+                >AXISBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='RELIANCEINDUSTRIES') }}"
+                target="_blank"
+                class="scroll"
+                >RELIANCEINDUSTRIES</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='TATAMOTORS') }}"
+                target="_blank"
+                class="scroll"
+                >TATAMOTORS</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='BAJAJFINANCE') }}"
+                target="_blank"
+                class="scroll"
+                >BAJAJFINANCE</a
+              >
+            </h4>
+          </div>
+          <div id="scroller-in">
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='HDFCBANK') }}"
+                target="_blank"
+                class="scroll"
+                >HDFCBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='Tata Consultancy Services') }}"
+                target="_blank"
+                class="scroll"
+                >TCS</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='SBI') }}"
+                target="_blank"
+                class="scroll"
+                >SBI</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='ICICIBANK') }}"
+                target="_blank"
+                class="scroll"
+                >ICICIBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='AXISBANK') }}"
+                target="_blank"
+                class="scroll"
+                >AXISBANK</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='RELIANCEINDUSTRIES') }}"
+                target="_blank"
+                class="scroll"
+                >RELIANCEINDUSTRIES</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='TATAMOTORS') }}"
+                target="_blank"
+                class="scroll"
+                >TATAMOTORS</a
+              >
+            </h4>
+            <h4>
+              <a
+                href="{{ url_for('stock', stock='BAJAJFINANCE') }}"
+                target="_blank"
+                class="scroll"
+                >BAJAJFINANCE</a
+              >
+            </h4>
+          </div>
+        </div>
+        <div id="about-us">
+          <img src="/static/assets/stockmarketphoto1.jpg" alt="" />
+          <div id="about-us-in">
+            <h3>ABOUT US</h3>
+            <p>
+              At StockX, we're using advanced AI and data analytics to transform
+              stock market predictions. Our chat model, developed by experts in
+              AI and finance, analyzes historical data to identify trends and
+              factors influencing market movements. Designed to empower traders
+              and investors, our model offers timely and reliable insights for
+              confident decision-making in the complex world of finance.
+            </p>
+          </div>
+          <img src="/static/assets/stockmarketphoto2.jpg" alt="" />
+        </div>
+        <div id="cards-container">
+          <div class="card" id="card1">
+            <div class="overlay">
+              <h4>MARKET</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                totam dolore, quos distinctio asperiores enim corrupti?
+                Accusantium eveniet tenetur ipsum.
+              </p>
+            </div>
+          </div>
+          <div class="card" id="card2">
+            <div class="overlay">
+              <h4>TRADING INSIGHTS</h4>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias
+                maxime magni nulla sit iure iusto repellat enim tempore
+                laboriosam nam?
+              </p>
+            </div>
+          </div>
+          <div class="card" id="card3">
+            <div class="overlay">
+              <h4>MARKET PORTFOLIO</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                totam dolore, quos distinctio asperiores enim corrupti?
+                Accusantium eveniet tenetur ipsum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="green-div">
+          <img
+            src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/dots-side.svg"
+            alt=""
+          />
+          <h4>
+            SIGN UP FOR STOCK NEWS AND SPECIAL OFFERS STRAIGHT TO YOUR INBOX
+          </h4>
+          <img
+            src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/dots-side.svg"
+            alt=""
+          />
+        </div>
+      </div>
+      <div id="page3">
+        <p>
+          Success in investing doesn't correlate with I.Q., once you are above
+          the level of 125.Once you have ordinary intelligence,what you need is
+          the temperament to control the urges that get other people into
+          trouble in investing. <br />(Warren Buffett)
+        </p>
+        <img
+          id="colon1"
+          src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/quote-left.svg"
+          alt=""
+        />
+        <img
+          id="colon2"
+          src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/quote-right.svg"
+          alt=""
+        />
+      </div>
+      <footer>
+        <div class="footer">
+          <p>Developed by Team StockX</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
