@@ -56,7 +56,7 @@
             {% for i in range(50) %}
             <h4>
               <a
-              href="{{ url_for('stock', stock=data['company'][i]) }}"
+              href="{{ url_for('stock', stock=data['ticker'][i]) }}"
                 target="_blank"
                 class="scroll"
                 >{{data['ticker'][i]}}</a

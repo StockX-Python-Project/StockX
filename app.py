@@ -27,9 +27,9 @@ def get_price(stock):
     return str(closing_price)
 
 
-@app.route('/get_chart_data', methods=['POST'])
-def get_stock_data():
-    ticker_symbol = 'RELIANCE.NS'
+@app.route('/get_chart_data/<ticker>', methods=['POST'])
+def get_stock_data(ticker):
+    ticker_symbol = ticker+'.NS'
     interval = request.form.get('interval')
     stock = yf.Ticker(ticker_symbol)
 
@@ -81,7 +81,20 @@ def stuff():
 
 @app.route("/<stock>")
 def stock(stock):
-   return render_template("stock.html", stockName=stock)
+    with open('static/assets/data.json', 'r') as json_file:
+        data = json.load(json_file)
+    
+    ticker_list = data.get("ticker", [])
+    company_list = data.get("company", [])
+    company = ""
+    
+    if stock in ticker_list:
+        index = ticker_list.index(stock)
+        if index < len(company_list):
+            company =  company_list[index]
+        else:
+            company = stock
+    return render_template("stock.html", stockName=stock, companyName=company)
 
 
 @app.route("/<stock>/closing_price")

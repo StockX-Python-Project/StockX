@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{stockName}}</title>
+    <title>{{companyName}}</title>
     <link rel="stylesheet" href="../static/stock.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -33,7 +33,7 @@
 
       <div class="grid-child">
 
-        <h1 id="stock-name">{{stockName}}</h1>
+        <h1 id="stock-name">{{companyName}}</h1>
         <h2 id="result">Loading...</h2>
         <script>
           document.getElementById("result").innerHTML;
@@ -67,6 +67,50 @@
           <p>Developed by Team StockX</p>
         </div>
     </footer>
+
+    <script>
+      var chart;
+var intervalSelect = $('#interval-select');
+
+function fetchStockData(interval) {
+    $.ajax({
+        url: '/get_chart_data/{{stockName}}',
+        method: 'POST',
+        data: { interval: interval },
+        success: function (data) {
+            var options = {
+                chart: {
+                    type: 'line',
+                },
+                title: {
+                    text: 'Chart'
+                },
+                xAxis: {
+                    type: 'datetime',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Price'
+                    }
+                },
+                series: [{
+                    name: 'Price',
+                    data: data,
+                }]
+            };
+            chart = Highcharts.chart('stockChart', options);
+        }
+    });
+}
+
+intervalSelect.on('change', function () {
+    var selectedInterval = $(this).val();
+    fetchStockData(selectedInterval);
+});
+
+// Initial load
+fetchStockData(intervalSelect.val());
+    </script>
 
     
 
