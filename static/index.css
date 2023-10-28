@@ -133,7 +133,7 @@ video {
     display: inline-block;
     white-space: nowrap;
     animation-name: scroll;
-    animation-duration: 15s;
+    animation-duration: 40s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }

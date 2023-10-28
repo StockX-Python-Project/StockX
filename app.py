@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
+import json
 
 app = Flask(__name__)
 
@@ -52,7 +53,9 @@ def get_stock_data():
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    with open('static/assets/data.json', 'r') as json_file:
+        companyData = json.load(json_file)
+    return render_template('index.html', data=companyData)
 
 
 @app.route("/login")
@@ -78,35 +81,7 @@ def stuff():
 
 @app.route("/<stock>")
 def stock(stock):
-    # with open("static/assets/ind_nifty50list.csv", "r", newline="") as fr:
-    #     reader = csv.DictReader(fr)
-    #     for data in reader:
-    #         if data["Company Name"].lower().replace(" ", "").find(stock.lower().replace(" ", "")) != -1:
-    #             ticker = data["Symbol"] + ".NS"
-
-    # stock_object = yf.Ticker(ticker)
-    # data = stock_object.history(period="1d")
-    # closing_price = data["Close"].iloc[0]
-
-    # today = stock_object.history(period="1d")
-    # week = stock_object.history(period="5d")
-    # month = stock_object.history(period="1m")
-    # year = stock_object.history(period="1y")
-    # maximum = stock_object.history(period="max")
-
-    # today_price = today["Close"]
-    # week_price = week["Close"]
-    # month_price = month["Close"]
-    # year_price = year["Close"]
-    # maximum_price = maximum["Close"]
-
-    # today_dates = today.index.date
-    # week_dates = week.index.date
-    # month_dates = month.index.date
-    # year_dates = year.index.date
-    # maximum_dates = maximum.index.date
-
-    return render_template("stock.html", stockName=stock)
+   return render_template("stock.html", stockName=stock)
 
 
 @app.route("/<stock>/closing_price")
