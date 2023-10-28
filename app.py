@@ -64,11 +64,11 @@ def index():
     return render_template('chart.html')
 
 
-@app.route("/Stock_Price/<stock>", methods=["GET"])
-def stuff(stock):
-    print(stock)
-    price = get_price(stock)
-    return jsonify(result=price)
+# @app.route("/Stock_Price/<stock>", methods=["GET"])
+# def stuff(stock):
+#     print(stock)
+#     price = get_price(stock)
+#     return jsonify(result=price)
 
 
 @app.route("/<stock>")
