@@ -10,17 +10,7 @@ app = Flask(__name__)
 
 
 def get_price(stock):
-    with open("static/assets/ind_nifty50list.csv", "r", newline="") as fr:
-        reader = csv.DictReader(fr)
-        for data in reader:
-            if (
-                data["Company Name"]
-                .lower()
-                .replace(" ", "")
-                .find(stock.lower().replace(" ", ""))
-                != -1
-            ):
-                ticker = data["Symbol"] + ".NS"
+    ticker = stock + ".NS"
     stock_object = yf.Ticker(ticker)
     data = stock_object.history(period="1d")
     closing_price = data["Close"].iloc[0]
@@ -47,7 +37,8 @@ def get_stock_data(ticker):
 
     data = []
     for idx, row in stock_data.iterrows():
-        data.append([int(row.name.timestamp()) * 1000, row['Close']])
+        close_price = round(row['Close'], 2)
+        data.append([int(row.name.timestamp()) * 1000, close_price])
 
     return jsonify(data)
 
@@ -74,13 +65,18 @@ def index():
 
 
 @app.route("/Stock_Price/<stock>", methods=["GET"])
-def stuff():
+def stuff(stock):
+    print(stock)
     price = get_price(stock)
     return jsonify(result=price)
 
 
 @app.route("/<stock>")
 def stock(stock):
+    stock_object = yf.Ticker(stock + ".NS")
+    data = stock_object.history(period="1d")
+    closing_price = round(data["Close"].iloc[0], 2)
+    
     with open('static/assets/data.json', 'r') as json_file:
         data = json.load(json_file)
     
@@ -94,7 +90,7 @@ def stock(stock):
             company =  company_list[index]
         else:
             company = stock
-    return render_template("stock.html", stockName=stock, companyName=company)
+    return render_template("stock.html", stockName=stock, companyName=company, price=closing_price)
 
 
 @app.route("/<stock>/closing_price")

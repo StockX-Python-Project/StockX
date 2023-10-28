@@ -8,54 +8,30 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-
-    <script type="text/javascript">
-      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-      var intervalID = setInterval(update_values,5000);
-
-        function update_values() {
-              $.getJSON($SCRIPT_ROOT + '/Crypto_Price',
-
-            function(data) {
-              $('#result').text(data.result);
-              console.log(data.result);
-            });
-
-          };
-
-          function stopTextColor() {
-            clearInterval(intervalID);
-          }
-    </script>
   </head>
-  <body onload="update_values();">
+  <body>
     <div class="grid-container">
-
       <div class="grid-child">
-
         <h1 id="stock-name">{{companyName}}</h1>
-        <h2 id="result">Loading...</h2>
-        <script>
-          document.getElementById("result").innerHTML;
-        </script>
+        <h2 id="stock-price">{{price}}</h2>
 
         <div class="btn-box">
-            <select id="interval-select">
-                <option value="1d">1 Day</option>
-                <option value="1w">7 Days</option>
-                <option value="1m">1 Month</option>
-                <option value="1y">1 Year</option>
-                <option value="max">Max</option>
-            </select>
+          <select id="interval-select">
+            <option value="1d">1 Day</option>
+            <option value="1w">1 Week</option>
+            <option value="1m">1 Month</option>
+            <option value="1y">1 Year</option>
+            <option value="max">Max</option>
+          </select>
         </div>
-        <div id="stockChart" style="height: 400px;"></div>
+        <div id="stockChart" style="height: 400px"></div>
       </div>
 
       <div id="grid-child">
         <div id="suggestions">
           <div id="suggestion-box">
             <h2>StockX Suggests...</h2>
-            <h2>Buy</h2>
+            <h2>{{stockName}}</h2>
             <h3>Source Articles 👇</h3>
           </div>
         </div>
@@ -63,56 +39,56 @@
     </div>
 
     <footer>
-        <div class="footer">
-          <p>Developed by Team StockX</p>
-        </div>
+      <div class="footer">
+        <p>Developed by Team StockX</p>
+      </div>
     </footer>
 
     <script>
       var chart;
-var intervalSelect = $('#interval-select');
+      var intervalSelect = $("#interval-select");
 
-function fetchStockData(interval) {
-    $.ajax({
-        url: '/get_chart_data/{{stockName}}',
-        method: 'POST',
-        data: { interval: interval },
-        success: function (data) {
+      function fetchStockData(interval) {
+        $.ajax({
+          url: "/get_chart_data/{{stockName}}",
+          method: "POST",
+          data: { interval: interval },
+          success: function (data) {
             var options = {
-                chart: {
-                    type: 'line',
-                },
+              chart: {
+                type: "line",
+              },
+              title: {
+                text: "Chart",
+              },
+              xAxis: {
+                type: "datetime",
+              },
+              yAxis: {
                 title: {
-                    text: 'Chart'
+                  text: "Price",
                 },
-                xAxis: {
-                    type: 'datetime',
+              },
+              series: [
+                {
+                  name: "Price",
+                  data: data,
                 },
-                yAxis: {
-                    title: {
-                        text: 'Price'
-                    }
-                },
-                series: [{
-                    name: 'Price',
-                    data: data,
-                }]
+              ],
             };
-            chart = Highcharts.chart('stockChart', options);
-        }
-    });
-}
+            chart = Highcharts.chart("stockChart", options);
+          },
+        });
+      }
 
-intervalSelect.on('change', function () {
-    var selectedInterval = $(this).val();
-    fetchStockData(selectedInterval);
-});
+      intervalSelect.on("change", function () {
+        var selectedInterval = $(this).val();
+        fetchStockData(selectedInterval);
+      });
 
-// Initial load
-fetchStockData(intervalSelect.val());
+      // Initial load
+      fetchStockData(intervalSelect.val());
     </script>
-
-    
 
     <script src="../static/stock.js"></script>
   </body>
