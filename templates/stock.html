@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{companyName}}</title>
-    <link rel="icon" href="/static/assets/favicon.jpg" type="image/jpg">
+    <link rel="icon" href="/static/assets/favicon.jpg" type="image/jpg" />
     <link rel="stylesheet" href="../static/stock.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,7 +25,25 @@
             <option value="max">Max</option>
           </select>
         </div>
-        <div id="stockChart" style="height: 400px"></div>
+      </div>
+      <div class="grid-child">
+        <div class="search-box">
+          <div class="row">
+            <input
+              type="text"
+              class="input-box"
+              placeholder="Search Stocks"
+              autocomplete="off"
+            />
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <div class="result-box"></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-child">
+        <div id="stockChart" style="height: 430px; border-radius: 10px;"></div>
       </div>
 
       <div id="grid-child">
@@ -64,6 +82,9 @@
               },
               xAxis: {
                 type: "datetime",
+                title: {
+                  text: "Time",
+                },
               },
               yAxis: {
                 title: {
@@ -78,6 +99,11 @@
               ],
             };
             chart = Highcharts.chart("stockChart", options);
+            chart.update({
+              chart: {
+                backgroundColor: "white",
+              },
+            });
           },
         });
       }

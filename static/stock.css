@@ -1,6 +1,78 @@
+* {
+  font-family: "Averta Demo PE";
+}
+
 body {
-  background-color: black;
-  color: #95c11e;
+  background-color: #021324;
+  color: #D3DAE4;
+}
+
+.search-box {
+  width: 420px;
+  background-color: #fff;
+  margin: 20px auto 0;
+  border-radius: 5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+input {
+  flex: 1;
+  height: 35px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+button .fa-solid {
+  width: 25px;
+  color: #021324;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: #021324;
+}
+
+.result-box {
+  position: absolute;
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #fff;
+  width: 420px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.result-box ul {
+  border-top: 1px solid #021324;
+  padding: 15px 10px;
+}
+
+.result-box ul li {
+  list-style: none;
+  border-radius: 3px;
+  padding: 15px 10px;
+  cursor: pointer;
+  color: #021324;
+  text-align: left;
+}
+
+.result-box ul li:hover {
+  background-color: #e9f3ff;
 }
 
 #container {
@@ -10,22 +82,23 @@ body {
 }
 
 #suggestions {
-  border-radius: 5%;
+  border-radius: 10px;
   background-color: aliceblue;
-  margin: 3rem;
+  margin: 1rem;
 }
 
 #suggestion-box {
   padding: 5%;
+  color: #021324;
 }
 
 .btn-box {
   width: 2%;
   height: fit-content;
-  margin: 35px 0px;
+  margin: 10px 0px;
   position: relative;
   border-radius: 30px;
-  background: #a3db0b;
+  background: #D3DAE4;
 }
 
 #interval-select {
@@ -33,13 +106,13 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #a3db0b;
+  background-color: aliceblue;
   cursor: pointer;
 }
 
 #interval-select:focus {
   outline: none;
-  border-color: #aaa;
+  border-color: #021324;
 }
 
 #interval-select option {
@@ -63,8 +136,8 @@ button {
 }
 
 footer {
-  background-color: #000000;
-  color: #fff;
+  background-color: #021324;
+  color: #D3DAE4;
   text-align: center;
 }
 
@@ -87,8 +160,8 @@ footer {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 2.3fr 1fr;
+  grid-gap: 10px;
 }
 
 .grid-child {

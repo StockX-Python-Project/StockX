@@ -13,13 +13,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://kit.fontawesome.com/a0e5820b30.js" crossorigin="anonymous"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
       integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/static/index.js"></script>
   </head>
 
   <body>
@@ -43,11 +43,12 @@
           using advanced GPT technology. Empower your investment decisions with
           AI-driven insights. Welcome to the Future of Stock Analysis
         </p>
-
-        <div class="upper">
-          <form action="" method="post">
-            <input type="text" placeholder="Search Stock" name="name" />
-          </form>
+        <div class="search-box">
+          <div class="row">
+              <input type="text" class="input-box" placeholder="Search Stocks" autocomplete="off">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <div class="result-box"> </div>
         </div>
       </div>
       <div id="page2">
@@ -131,7 +132,7 @@
           Success in investing doesn't correlate with I.Q., once you are above
           the level of 125.Once you have ordinary intelligence,what you need is
           the temperament to control the urges that get other people into
-          trouble in investing. <br />(Warren Buffett)
+          trouble in investing. <br /> - Warren Buffett
         </p>
         <img
           id="colon1"
@@ -150,5 +151,6 @@
         </div>
       </footer>
     </div>
+    <script src="../static/index.js"></script>
   </body>
 </html>
