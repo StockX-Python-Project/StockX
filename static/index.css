@@ -168,7 +168,7 @@ button .fa-solid {
     display: inline-block;
     white-space: nowrap;
     animation-name: scroll;
-    animation-duration: 40s;
+    animation-duration: 45s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
