@@ -3,8 +3,8 @@
 }
 
 body {
-  background-color: #021324;
-  color: #D3DAE4;
+  background-color: black;
+  color: #95c11e;
 }
 
 .search-box {
@@ -38,13 +38,13 @@ button {
 
 button .fa-solid {
   width: 25px;
-  color: #021324;
+  color: #555;
   font-size: 22px;
   cursor: pointer;
 }
 
 ::placeholder {
-  color: #021324;
+  color: #555;
 }
 
 .result-box {
@@ -58,7 +58,7 @@ button .fa-solid {
 }
 
 .result-box ul {
-  border-top: 1px solid #021324;
+  border-top: 1px solid #999;
   padding: 15px 10px;
 }
 
@@ -67,7 +67,7 @@ button .fa-solid {
   border-radius: 3px;
   padding: 15px 10px;
   cursor: pointer;
-  color: #021324;
+  color: #555;
   text-align: left;
 }
 
@@ -89,7 +89,6 @@ button .fa-solid {
 
 #suggestion-box {
   padding: 5%;
-  color: #021324;
 }
 
 .btn-box {
@@ -98,7 +97,7 @@ button .fa-solid {
   margin: 10px 0px;
   position: relative;
   border-radius: 30px;
-  background: #D3DAE4;
+  background: #a3db0b;
 }
 
 #interval-select {
@@ -106,13 +105,13 @@ button .fa-solid {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: aliceblue;
+  background-color: #a3db0b;
   cursor: pointer;
 }
 
 #interval-select:focus {
   outline: none;
-  border-color: #021324;
+  border-color: #aaa;
 }
 
 #interval-select option {
@@ -136,8 +135,8 @@ button {
 }
 
 footer {
-  background-color: #021324;
-  color: #D3DAE4;
+  background-color: #000000;
+  color: #fff;
   text-align: center;
 }
 

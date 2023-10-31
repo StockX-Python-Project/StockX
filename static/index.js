@@ -20,7 +20,7 @@ h4all.forEach(function(elem){
 })
 
 gsap.to("#nav",{
-    backgroundColor :"#021324",
+    backgroundColor :"#000",
     duration:0.5,
     height:"100px",
     scrollTrigger:{
@@ -34,7 +34,7 @@ gsap.to("#nav",{
     
 })
 gsap.to("#main",{
-    backgroundColor :"#021324",
+    backgroundColor :"#000",
     scrollTrigger:{
         trigger:"#main",
        scroller:"body",

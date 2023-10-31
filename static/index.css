@@ -14,6 +14,7 @@ html, body {
 #nav{
     height: 130px; 
     width: 100%;
+    /*background-color: red;*/
     display: flex;
     align-items: center;
     padding: 0 100px;
@@ -35,7 +36,7 @@ html, body {
     
 }
 #nav h4:hover, #nav h4 a:hover{
-      color: #D3DAE4;
+      color: #95C11E;
 }
 video {
     height: 100%;
@@ -66,6 +67,15 @@ video {
     font-size: 87px;
     font-weight: 900;
     position: relative;
+}
+#page1 h1::before{
+    content: 'WELCOME TO STOCKX';
+    position: absolute;
+    color: black;
+    top: -5px;
+    left: -5px;
+    -webkit-text-stroke: 2px #95C11E;
+    z-index: -1;
 }
 #page1 h2{
     font-size: 30px;
@@ -181,21 +191,21 @@ button .fa-solid {
     margin-right: 30px;
     transition: all linear 0.2s;
     color: transparent;
-    -webkit-text-stroke: 2px #D3DAE4;
+    -webkit-text-stroke: 2px #95C11E;
 }
 #scroller h4:hover{
-    color: #D3DAE4;
+    color: #95C11E;
 }
 .scroll {
     text-decoration: none;
-    color: #D3DAE4;
+    color: #95C11E;
     color: transparent;
-    -webkit-text-stroke: 2px #D3DAE4;
+    -webkit-text-stroke: 2px #95C11E;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .scroll:hover {
     text-decoration: none;
-    color: #D3DAE4;
+    color: #95C11E;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -282,7 +292,7 @@ z-index: 10;
 .overlay{
     height: 100%;
     width: 100%;
-    background-color: #D3DAE4;
+    background-color: #95C11E;
     padding: 20px;  
     padding-top: 150px;
     opacity: 0;
@@ -337,7 +347,7 @@ z-index: 10;
 #page3{
     height: 100vh;
     width: 100%;
-    background-color: #021324;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -368,7 +378,7 @@ z-index: 10;
 }
 
 footer {
-    background-color: #021324;
+    background-color: #000000;
     color: #fff;
     text-align: center;
     padding: 1%;
