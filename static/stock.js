@@ -49,6 +49,7 @@ function selectInput(list) {
     resultBox.innerHTML = "";
     const name = list.innerHTML;
     let ticker = "";
+    console.log("Problem");
     for(let i = 0; i < companyNames.length; i ++) {
         if(name === companyNames[i]) {
             ticker = tickerNames[i];

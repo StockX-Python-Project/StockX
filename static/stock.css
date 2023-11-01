@@ -7,6 +7,10 @@ body {
   color: #D3DAE4;
 }
 
+#articles{
+  color: #021324;
+}
+
 .search-box {
   width: 420px;
   background-color: #fff;

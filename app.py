@@ -1,9 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for, jsonify
+from flask import Flask, request, render_template, jsonify
 import yfinance as yf
-import plotly.graph_objects as go
-import pandas as pd
-import matplotlib.pyplot as plt
-import csv
 import json
 
 app = Flask(__name__)
@@ -25,7 +21,7 @@ def get_stock_data(ticker):
 
     # Fetch historical data for the given ticker
     if interval == '1d':
-        stock_data = stock.history(period='1d', interval='30m')
+        stock_data = stock.history(period='1d', interval='15m')
     elif interval == '1w':
         stock_data = stock.history(period='7d', interval='1h')
     elif interval == '1m':
