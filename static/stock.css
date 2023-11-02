@@ -93,7 +93,6 @@ button .fa-solid {
 
 #suggestion-box {
   padding: 5%;
-  color: #021324;
 }
 
 .btn-box {
@@ -170,4 +169,8 @@ footer {
 
 .grid-child {
   margin: 1rem;
+}
+
+#stock-name {
+  font-weight: bolder;
 }

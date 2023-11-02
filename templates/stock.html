@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{companyName}}</title>
-    <link rel="icon" href="/static/assets/favicon.jpg" type="image/jpg" />
+    <link rel="icon" href="/static/assets/X.png" type="image/jpg">
     <link rel="stylesheet" href="../static/stock.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -14,7 +14,7 @@
     <div class="grid-container">
       <div class="grid-child">
         <h1 id="stock-name">{{companyName}}</h1>
-        <h2 id="stock-price">{{price}}</h2>
+        <h2 id="stock-price">Current Price: {{price}}</h2>
 
         <div class="btn-box">
           <select id="interval-select">
@@ -49,24 +49,32 @@
       <div id="grid-child">
         <div id="suggestions">
           <div id="suggestion-box">
-            <h2>StockX Suggests...</h2>
-            <h2>{{stockName}}</h2>
-            <h3>Source Articles 👇</h3>
-            <p>
-              <a id="articles"
-                href="https://www.livemint.com/market/stock-market-news/5-things-that-changed-for-the-stock-market-overnight-gift-nifty-to-us-fed-meet-11698804857082.html" target="_blank"
-                >6 things that changed for the stock market overnight - Gift Nifty to US Fed meet</a
+            <h2 style="color: #021324">StockX Suggests...</h2>
+            <h2 style="color: {{font_color}};">{{decision}} the stocks with {{sentiment}} sentiment</h2>
+            <h3 style="color: #021324">Source Articles 👇</h3>
+            <p style="color: #021324">
+              <a
+                id="articles"
+                href="https://www.livemint.com/market/stock-market-news/5-things-that-changed-for-the-stock-market-overnight-gift-nifty-to-us-fed-meet-11698804857082.html"
+                target="_blank"
+                >6 things that changed for the stock market overnight - Gift
+                Nifty to US Fed meet</a
               >
             </p>
             <p>
-              <a id="articles"
-                href="https://www.livemint.com/market/stock-market-news/internet-stocks-including-zomato-policybazaar-rategain-recover-in-2023-should-you-buy-them-for-long-term-11698745084469.html" target="_blank"
-                >Internet stocks including Zomato, PolicyBazaar, RateGain recover in 2023; should you buy them for long term?</a
+              <a
+                id="articles"
+                href="https://www.livemint.com/market/stock-market-news/internet-stocks-including-zomato-policybazaar-rategain-recover-in-2023-should-you-buy-them-for-long-term-11698745084469.html"
+                target="_blank"
+                >Internet stocks including Zomato, PolicyBazaar, RateGain
+                recover in 2023; should you buy them for long term?</a
               >
             </p>
             <p>
-              <a id="articles"
-                href="https://www.livemint.com/market/stock-market-news/cautious-of-headwinds-to-domestic-demand-inflation-to-average-5-7-in-2023-says-aurodeep-nandi-of-nomura-11698743251902.html" target="_blank"
+              <a
+                id="articles"
+                href="https://www.livemint.com/market/stock-market-news/cautious-of-headwinds-to-domestic-demand-inflation-to-average-5-7-in-2023-says-aurodeep-nandi-of-nomura-11698743251902.html"
+                target="_blank"
                 >Cautious of headwinds to domestic demand; inflation to average
                 5.7% in 2023, says Aurodeep Nandi of Nomura</a
               >

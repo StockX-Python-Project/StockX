@@ -1,6 +1,19 @@
 from flask import Flask, request, render_template, jsonify
 import yfinance as yf
 import json
+import os
+import importlib.util
+
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+# Define the path
+path = ROOT_PATH + "\\models\\sentiment.py"
+
+# Use importlib to load the module
+spec = importlib.util.spec_from_file_location("get_data", path)
+get_data_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(get_data_module)
+
 
 app = Flask(__name__)
 
@@ -59,19 +72,14 @@ def register():
 def index():
     return render_template('chart.html')
 
-
-# @app.route("/Stock_Price/<stock>", methods=["GET"])
-# def stuff(stock):
-#     print(stock)
-#     price = get_price(stock)
-#     return jsonify(result=price)
-
-
 @app.route("/<stock>")
 def stock(stock):
+    sentiment = get_data_module.get_data(stock)
     stock_object = yf.Ticker(stock + ".NS")
     data = stock_object.history(period="1d")
     closing_price = round(data["Close"].iloc[0], 2)
+    font_color = "#021324"
+    decision = ""
     
     with open('static/assets/data.json', 'r') as json_file:
         data = json.load(json_file)
@@ -86,7 +94,17 @@ def stock(stock):
             company =  company_list[index]
         else:
             company = stock
-    return render_template("stock.html", stockName=stock, companyName=company, price=closing_price)
+        
+        if sentiment < -0.2 :
+            font_color = "red"
+            decision = "Sell"
+        elif sentiment >= -0.2 and sentiment <= 0.2 :
+            font_color = "#021324"
+            decision="Hold"
+        elif sentiment > 0.2 :
+            font_color = "green"
+            decision = "Buy"
+    return render_template("stock.html", stockName=stock, companyName=company, price=closing_price, sentiment=round(sentiment, 2), font_color=font_color, decision=decision)
 
 
 @app.route("/<stock>/closing_price")
@@ -100,3 +118,4 @@ def get_closing_price(stock):
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
