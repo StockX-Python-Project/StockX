@@ -34,7 +34,7 @@ def get_stock_data(ticker):
 
     # Fetch historical data for the given ticker
     if interval == '1d':
-        stock_data = stock.history(period='1d', interval='15m')
+        stock_data = stock.history(period='1d', interval='5m')
     elif interval == '1w':
         stock_data = stock.history(period='7d', interval='1h')
     elif interval == '1m':
