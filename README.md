@@ -40,3 +40,32 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+
+## Demo
+
+### Home Page
+![](static/github-readme/home.png)
+
+### About Page
+![](static/github-readme/about.png)
+
+### Slider
+![](static/github-readme/slider.png)
+
+### 1 Day Graph
+![](static/github-readme/day.png)
+
+### 1 Week Graph
+![](static/github-readme/week.png)
+
+### Max Graph
+![](static/github-readme/max.png)
+
+### Home Page
+![](static/github-readme/week.png)
+
+### Search
+![](static/github-readme/search.png)
+
+### Prediction
+![](static/github-readme/prediction.png)
