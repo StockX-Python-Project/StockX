@@ -13,21 +13,21 @@ StockX is a web application that provides real-time stock market data and analyt
 - **User-friendly Interface:** Intuitive and easy-to-use interface for a seamless user experience.
 
 
-### Installation
+## Installation
 
-## Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/your-username/stockX.git
 ```
 
-## Change Directory
+### Change Directory
 
 ```bash
 cd stockX
 ```
 
-## Install the dependencies:
+### Install the dependencies:
 
 _Creating a virtual is Recommended_
 
@@ -35,7 +35,7 @@ _Creating a virtual is Recommended_
 pip install -r requirements.txt
 ```
 
-## Run the program
+### Run the program
 
 ```bash
 python app.py
