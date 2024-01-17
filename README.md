@@ -12,7 +12,6 @@ StockX is a web application that provides real-time stock market data and analyt
 - **Historical Analysis:** Access historical stock data to analyze trends over time.
 - **User-friendly Interface:** Intuitive and easy-to-use interface for a seamless user experience.
 
-
 ## Installation
 
 ### Clone the repository
@@ -69,3 +68,5 @@ python app.py
 
 ### Prediction
 ![](static/github-readme/prediction.png)
+
+## Contributions are Welcomed!!
