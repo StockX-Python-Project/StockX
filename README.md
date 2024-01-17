@@ -12,6 +12,10 @@ StockX is a web application that provides real-time stock market data and analyt
 - **Historical Analysis:** Access historical stock data to analyze trends over time.
 - **User-friendly Interface:** Intuitive and easy-to-use interface for a seamless user experience.
 
+## Working
+- Combined Roberta model (NLP) with SARIMAX (Time series).
+- Predictions from both models ranging from -1 to +1 combined to generate sentiment score with 50% weightage each.
+
 ## Installation
 
 ### Clone the repository
